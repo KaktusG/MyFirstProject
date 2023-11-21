@@ -22,3 +22,11 @@ class ProductPage(BasePage):
 		message_price = self.browser.find_element(*ProductPageLocators.MESSAGE_BLOCK_WITH_PRICE).text
 		item_price = self.item_price()
 		assert message_price == item_price, "The price doesn't match"
+		
+	def should_not_be_success_message(self):
+		assert self.is_not_element_present(*ProductPageLocators.MESSAGE_BLOCK_WITH_TXT),\
+			 "Success message is presented, but should not be"
+	
+	def should_disappear_success_message(self):
+		assert self.is_disappeared(*ProductPageLocators.MESSAGE_BLOCK_WITH_TXT),\
+				"Success message is still displayed"
